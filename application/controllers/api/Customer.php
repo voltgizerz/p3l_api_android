@@ -16,6 +16,7 @@ class Customer extends REST_Controller
         parent::__construct();
         $this->load->model('Customer_model', 'customer');
     }
+
     public function index_get()
     {
         $id = $this->get('id_customer');
@@ -38,8 +39,7 @@ class Customer extends REST_Controller
         } else {
             $this->response([
                 'status' => false,
-
-                'message' => 'GAGAL, ID CUSTOMER TIDAK DITEMUKAN !'
+                'message' => 'GAGAL, ID CUSTOMER TIDAK DITEMUKAN / SALAH FORMAT !'
 
             ], REST_Controller::HTTP_NOT_FOUND);
         }

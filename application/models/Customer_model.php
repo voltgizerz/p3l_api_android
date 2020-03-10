@@ -9,28 +9,28 @@ class Customer_model extends CI_Model
 	{
 		if ($id === null) {
 
-			return $this->db->get('customer')->result_array();
+			return $this->db->get('data_customer')->result_array();
 			# code...
 		} else {
 
-			return $this->db->get_where('customer', ['id' => $id])->result_array();
+			return $this->db->get_where('data_customer', ['id_customer' => $id])->result_array();
 		}
 	}
 
 	public function deleteCustomer($id)
 	{
-		$this->db->delete('customer', ['id' => $id]);
+		$this->db->delete('data_customer', ['id_customer' => $id]);
 		return $this->db->affected_rows();
 	}
 	public function createCustomer($data)
 	{
-		$this->db->insert('customer', $data);
+		$this->db->insert('data_customer', $data);
 		return $this->db->affected_rows();
 	}
 
 	public function updateCustomer($data, $id)
 	{
-		$this->db->update('customer', $data, ['id' => $id]);
+		$this->db->update('data_customer', $data, ['id_customer' => $id]);
 		return $this->db->affected_rows();
 	}
 }
