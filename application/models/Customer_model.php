@@ -30,7 +30,8 @@ class Customer_model extends CI_Model
 
 	public function updateCustomer($data, $id)
 	{
-		$this->db->update('data_customer', $data, ['id_customer' => $id]);
+		$this->db->where('id_customer', $id);
+		$this->db->update('data_customer', $data);
 		return $this->db->affected_rows();
 	}
 }
