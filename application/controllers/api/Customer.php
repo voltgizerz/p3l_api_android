@@ -9,29 +9,29 @@ require APPPATH . 'libraries/Format.php';
 
 
 
-class Film extends REST_Controller
+class Customer extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Film_model', 'film');
+        $this->load->model('Customer_model', 'customer');
     }
     public function index_get()
     {
-        $id = $this->get('id');
+        $id = $this->get('id_customer');
         if ($id === null) {
 
-            $film = $this->film->getFilm();
+            $customer = $this->customer->getCustomer();
             # code...
         } else {
-            $film = $this->film->getFilm($id);
+            $customer = $this->customer->getCustomer($id);
         }
 
-        if ($film) {
+        if ($customer) {
 
             $this->response([
                 'status' => true,
-                'data' => $film
+                'data' => $customer
 
             ], REST_Controller::HTTP_OK);
             # code...
@@ -39,36 +39,36 @@ class Film extends REST_Controller
             $this->response([
                 'status' => false,
 
-                'message' => 'id not found'
+                'message' => 'GAGAL, ID CUSTOMER TIDAK DITEMUKAN !'
 
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
     public function index_delete()
     {
-        $id = $this->delete('id');
+        $id = $this->delete('id_customer');
         if ($id === null) {
             # code...
             $this->response([
                 'status' => false,
-                'message' => 'provide an id not found'
+                'message' => 'GAGAL, ID CUSTOMER TIDAK DITEMUKAN !'
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->film->deleteFilm($id) > 0) {
+            if ($this->customer->deleteCustomer($id) > 0) {
                 //ok
 
                 $this->response([
                     'status' => true,
-                    'id' => $id,
-                    'message' => 'delete Sukses'
+                    'id_customer' => $id,
+                    'message' => 'SUKSES DELETE CUSTOMER'
                 ], REST_Controller::HTTP_NO_CONTENT);
                 # code...
             } else {
                 ////id not found 
                 $this->response([
                     'status' => false,
-                    'message' => 'provide an id not found'
+                    'message' => 'GAGAL, ID CUSTOMER TIDAK DITEMUKAN !'
 
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }
@@ -77,25 +77,25 @@ class Film extends REST_Controller
 
     public function index_post()
     {
+        $time = date('Y-m-d H:i:s');
         $data = [
-
-            'judul'    => $this->post('judul'),
-            'rating'    => $this->post('rating'),
-            'sinopsis'    => $this->post('sinopsis'),
-            'runtime'    => $this->post('runtime'),
-            'studio'    => $this->post('studio')
+            'nama_customer'    => $this->post('nama_customer'),
+            'alamat_customer'    => $this->post('alamat_customer'),
+            'tanggal_lahir_customer'    => $this->post('tanggal_lahir_customer'),
+            'nomor_hp_customer'    => $this->post('nomor_hp_customer'),
+            $this->db->set('created_date', $time)
         ];
-        if ($this->film->createFilm($data) > 0) {
+        if ($this->customer->createCustomer($data) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'message' => 'Mahasiswa Has been created'
+                'message' => 'SUKSES CUSTOMER BERHASIL DI TAMBAHKAN !'
 
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failded to Createed'
+                'message' => 'GAGAL, MENAMBAHKAN CUSTOMER BARU !'
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
@@ -103,27 +103,28 @@ class Film extends REST_Controller
 
     public function index_put()
     {
-        $id = $this->put('id');
+        $id = $this->put('id_customer');
+        $time = date('Y-m-d H:i:s');
         $data = [
 
-            'judul'    => $this->put('judul'),
-            'rating'    => $this->put('rating'),
-            'sinopsis'    => $this->put('sinopsis'),
-            'runtime'    => $this->put('runtime'),
-            'studio'    => $this->put('studio')
+            'nama_customer'    => $this->post('nama_customer'),
+            'alamat_customer'    => $this->post('alamat_customer'),
+            'tanggal_lahir_customer'    => $this->post('tanggal_lahir_customer'),
+            'nomor_hp_customer'    => $this->post('nomor_hp_custome'),
+            $this->db->set('updated_date', $time)
         ];
 
-        if ($this->film->updateFilm($data, $id) > 0) {
+        if ($this->customer->updateCustomer($data, $id) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'message' => 'UPDATED MAHASISWA'
+                'message' => 'SUKSES UPDATED CUSTOMER !'
 
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failded to UPDATED'
+                'message' => 'GAGAL UPDATED CUSTOMER !'
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }

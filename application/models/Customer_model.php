@@ -1,40 +1,36 @@
 <?php
 
-class Film_model extends CI_Model
+class Customer_model extends CI_Model
 {
-	
 
-	public function getFilm($id = null)
+
+	public function getCustomer($id = null)
 
 	{
-		if ($id=== null) {
-		
-		return $this->db->get('film')->result_array();
-	# code...
-		}
-		else
-		{
+		if ($id === null) {
 
-			return $this->db->get_where('film', ['id'=> $id])->result_array();
+			return $this->db->get('customer')->result_array();
+			# code...
+		} else {
 
+			return $this->db->get_where('customer', ['id' => $id])->result_array();
 		}
-		
 	}
 
-	public function deleteFilm($id)
+	public function deleteCustomer($id)
 	{
-		$this->db->delete('film', ['id'=>$id] );
+		$this->db->delete('customer', ['id' => $id]);
 		return $this->db->affected_rows();
 	}
-	public function createFilm($data)
+	public function createCustomer($data)
 	{
-		$this->db->insert('film',$data);
+		$this->db->insert('customer', $data);
 		return $this->db->affected_rows();
 	}
 
-	public function updateFilm($data , $id)
+	public function updateCustomer($data, $id)
 	{
-		$this->db->update('film', $data,['id'=>$id]);
+		$this->db->update('customer', $data, ['id' => $id]);
 		return $this->db->affected_rows();
 	}
 }
