@@ -1,11 +1,11 @@
 <?php
+
 /**
  * @author   Natan Felles <natanfelles@gmail.com>
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-if ( ! function_exists('add_foreign_key'))
-{
+if (!function_exists('add_foreign_key')) {
 	/**
 	 * @param string $table       Table name
 	 * @param string $foreign_key Collumn name having the Foreign Key
@@ -23,8 +23,7 @@ if ( ! function_exists('add_foreign_key'))
 	}
 }
 
-if ( ! function_exists('drop_foreign_key'))
-{
+if (!function_exists('drop_foreign_key')) {
 	/**
 	 * @param string $table       Table name
 	 * @param string $foreign_key Collumn name having the Foreign Key
@@ -37,8 +36,7 @@ if ( ! function_exists('drop_foreign_key'))
 	}
 }
 
-if ( ! function_exists('add_trigger'))
-{
+if (!function_exists('add_trigger')) {
 	/**
 	 * @param string $trigger_name Trigger name
 	 * @param string $table        Table name
@@ -55,8 +53,7 @@ if ( ! function_exists('add_trigger'))
 	}
 }
 
-if ( ! function_exists('drop_trigger'))
-{
+if (!function_exists('drop_trigger')) {
 	/**
 	 * @param string $trigger_name Trigger name
 	 *
