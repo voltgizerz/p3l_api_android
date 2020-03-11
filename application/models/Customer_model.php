@@ -39,9 +39,9 @@ class Customer_model extends CI_Model
         ];
 
         if ($this->db->where('id_customer', $id)->update('data_customer', $updateData)) {
-            return ['msg' => 'Berhasil', 'error' => false];
+            return ['msg' => 'SUSKSES UPDATE CUSTOMER!', 'id_customer' => $id, 'error' => false];
         }
-        return ['msg' => 'Gagal', 'error' => true];
+        return ['msg' => 'GAGAL, UPDATE CUSTOMER ID TIDAK DITEMUKAN !', 'error' => true];
     }
 
     public function getCustomerID($id)
@@ -52,7 +52,7 @@ class Customer_model extends CI_Model
         if ($result->num_rows() != 0) {
             return ['msg' => $result->result(), 'error' => false];
         } else {
-            return ['msg' => 'Data Tidak Ditemukan', 'error' => true];
+            return ['msg' => 'GAGAL, CARI CUSTOMER ID TIDAK DITEMUKAN !', 'error' => true];
         }
     }
 }
