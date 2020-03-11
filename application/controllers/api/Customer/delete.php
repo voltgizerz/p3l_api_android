@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class delete extends REST_Controller
+class Delete extends REST_Controller
 {
     public function __construct()
     {

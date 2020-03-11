@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class get extends REST_Controller
+class Get extends REST_Controller
 {
     public function __construct()
     {
@@ -19,7 +19,6 @@ class get extends REST_Controller
     public function index_get()
     {
         $id = $this->get('id_customer');
-        var_dump($id);
         if ($id === null) {
 
             $customer = $this->customer->getCustomer($id);
