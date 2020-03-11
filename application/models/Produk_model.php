@@ -30,24 +30,25 @@ class Produk_model extends CI_Model
     public function updateProduk($request, $id)
     {
         $updateData =
-            ['nama_customer' => $request->nama_customer,
-            'alamat_customer' => $request->alamat_customer,
-            'tanggal_lahir_customer' => $request->tanggal_lahir_customer,
-            'nomor_hp_customer' => $request->nomor_hp_customer,
+            ['nama_produk' => $request->nama_produk,
+            'harga_produk' => $request->harga_produk,
+            'stok_produk' => $request->stok_produk,
+            'gambar_produk' => $request->gambar_produk,
+            'stok_minimal_produk' => $request->stok_minimal_produk,
             'updated_date' => $request->updated_date,
             'deleted_date' => $request->deleted_date,
         ];
 
-        if ($this->db->where('id_customer', $id)->update('data_customer', $updateData)) {
-            return ['msg' => 'Berhasil', 'error' => false];
+        if ($this->db->where('id_produk', $id)->update('data_produk', $updateData)) {
+            return ['msg' => 'Berhasil Update Produk', 'error' => false];
         }
-        return ['msg' => 'Gagal', 'error' => true];
+        return ['msg' => 'Gagal Update Produk', 'error' => true];
     }
 
     public function getProdukID($id)
     {
         $this->id = $id;
-        $query = "SELECT * FROM data_customer WHERE id_customer = ?";
+        $query = "SELECT * FROM data_produk WHERE id_produk = ?";
         $result = $this->db->query($query, $this->id);
         if ($result->num_rows() != 0) {
             return ['msg' => $result->result(), 'error' => false];
