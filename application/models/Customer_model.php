@@ -3,7 +3,7 @@
 class Customer_model extends CI_Model
 {
 
-    public function getCustomer($id = null)
+    public function getCustomer($id)
     {
         if ($id === null) {
 
@@ -11,7 +11,8 @@ class Customer_model extends CI_Model
             # code...
         } else {
 
-            return $this->db->get_where('data_customer', ['id_customer' => $id])->result_array();
+            $this->db->where('id_customer', $id);
+            return $this->db->get('data_customer')->result_array();
         }
     }
 
@@ -26,10 +27,32 @@ class Customer_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    public function updateCustomer($data, $id)
+    public function updateCustomer($request, $id)
     {
-        $this->db->where('id_customer', $id);
-        $this->db->update('data_customer', $data);
-        return $this->db->affected_rows();
+        $updateData =
+            ['nama_customer' => $request->nama_customer,
+            'alamat_customer' => $request->alamat_customer,
+            'tanggal_lahir_customer' => $request->tanggal_lahir_customer,
+            'nomor_hp_customer' => $request->nomor_hp_customer,
+            'updated_date' => $request->updated_date,
+            'deleted_date' => $request->deleted_date,
+        ];
+
+        if ($this->db->where('id_customer', $id)->update('data_customer', $updateData)) {
+            return ['msg' => 'Berhasil', 'error' => false];
+        }
+        return ['msg' => 'Gagal', 'error' => true];
+    }
+
+    public function getCustomerID($id)
+    {
+        $this->id = $id;
+        $query = "SELECT * FROM data_customer WHERE id_customer = ?";
+        $result = $this->db->query($query, $this->id);
+        if ($result->num_rows() != 0) {
+            return ['msg' => $result->result(), 'error' => false];
+        } else {
+            return ['msg' => 'Data Tidak Ditemukan', 'error' => true];
+        }
     }
 }

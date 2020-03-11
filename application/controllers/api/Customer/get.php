@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class Customer extends REST_Controller
+class get extends REST_Controller
 {
     public function __construct()
     {
@@ -19,9 +19,10 @@ class Customer extends REST_Controller
     public function index_get()
     {
         $id = $this->get('id_customer');
+        var_dump($id);
         if ($id === null) {
 
-            $customer = $this->customer->getCustomer();
+            $customer = $this->customer->getCustomer($id);
             # code...
 
         } else {
@@ -50,6 +51,7 @@ class Customer extends REST_Controller
     {
 
         $id = $this->delete('id_customer');
+        var_dump($id);
         if ($id === null) {
             # code...
             $this->response([
@@ -88,6 +90,8 @@ class Customer extends REST_Controller
             'tanggal_lahir_customer' => $this->post('tanggal_lahir_customer'),
             'nomor_hp_customer' => $this->post('nomor_hp_customer'),
             'created_date' => date("Y-m-d H:i:s"),
+            'updated_date' => date("0000:00:0:00:00"),
+            'deleted_date' => date("0000:00:0:00:00"),
         ];
         if ($this->customer->createCustomer($data) > 0) {
             # code...
@@ -115,6 +119,7 @@ class Customer extends REST_Controller
             'tanggal_lahir_customer' => $this->put('tanggal_lahir_customer'),
             'nomor_hp_customer' => $this->put('nomor_hp_customer'),
             'updated_date' => date("Y-m-d H:i:s"),
+            'deleted_date' => date("0000:00:0:00:00"),
 
         ];
 
