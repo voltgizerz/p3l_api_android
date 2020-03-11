@@ -27,7 +27,7 @@ class Produk_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    public function updateCustomer($request, $id)
+    public function updateProduk($request, $id)
     {
         $updateData =
             ['nama_customer' => $request->nama_customer,
@@ -44,7 +44,7 @@ class Produk_model extends CI_Model
         return ['msg' => 'Gagal', 'error' => true];
     }
 
-    public function getCustomerID($id)
+    public function getProdukID($id)
     {
         $this->id = $id;
         $query = "SELECT * FROM data_customer WHERE id_customer = ?";
