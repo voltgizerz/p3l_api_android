@@ -20,7 +20,7 @@ class Delete extends REST_Controller
             # code...
             $this->response([
                 'status' => false,
-                'message' => 'provide an id not found',
+                'message' => 'GAGAL ID TIDAK BOLEH KOSONG !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
@@ -30,14 +30,14 @@ class Delete extends REST_Controller
                 $this->response([
                     'status' => true,
                     'id_customer' => $id,
-                    'message' => 'delete customer Sukses',
+                    'message' => 'SUKSES DELETE CUSTOMER!',
                 ], REST_Controller::HTTP_CREATED);
                 # code...
             } else {
                 ////id not found
                 $this->response([
                     'status' => false,
-                    'message' => 'id tidak ada',
+                    'message' => 'GAGAL DELETE CUSTOMER ID TIDAK DITEMUKAN !',
 
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }
