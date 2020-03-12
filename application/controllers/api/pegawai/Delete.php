@@ -11,7 +11,7 @@ class Delete extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Customer_model');
+        $this->load->model('Pegawai_model');
     }
     public function index_post($id)
     {
@@ -24,13 +24,13 @@ class Delete extends REST_Controller
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->Customer_model->deleteCustomer($id) > 0) {
+            if ($this->Pegawai_model->deletePegawai($id) > 0) {
                 //ok
 
                 $this->response([
                     'status' => true,
-                    'id_customer' => $id,
-                    'message' => 'delete customer Sukses',
+                    'id_pegawai' => $id,
+                    'message' => 'delete pegawai Sukses',
                 ], REST_Controller::HTTP_CREATED);
                 # code...
             } else {
