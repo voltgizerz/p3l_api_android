@@ -110,7 +110,7 @@ class Get extends REST_Controller
     {
         $id_ukuran_hewan = $this->put('id_ukuran_hewan');
         $data = [
-            'ukuran_hewan' => $this->post('id_customer'),
+            'ukuran_hewan' => $this->post('ukuran_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
