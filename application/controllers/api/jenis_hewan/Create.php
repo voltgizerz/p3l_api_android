@@ -13,32 +13,30 @@ class Create extends REST_Controller
     {
         parent::__construct();
 
-        $this->load->model('Customer_model', 'customer');
+        $this->load->model('Jenis_Hewan_model', 'jenis_hewan');
     }
 
     public function index_post()
     {
         $data = [
-            'nama_customer' => $this->post('nama_customer'),
-            'alamat_customer' => $this->post('alamat_customer'),
-            'tanggal_lahir_customer' => $this->post('tanggal_lahir_customer'),
-            'nomor_hp_customer' => $this->post('nomor_hp_customer'),
+            'id_jenis_hewan' => $this->post('id_jenis_hewan'),
+            'nama_jenis_hewan' => $this->post('nama_jenis_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
         ];
-        if ($this->customer->createCustomer($data) > 0) {
+        if ($this->jenis_hewan->createJenis_Hewan($data) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'message' => 'SUKSES CUSTOMER BERHASIL DI TAMBAHKAN !',
+                'message' => 'SUKSES JENIS HEWAN BERHASIL DI TAMBAHKAN !',
 
             ], REST_Controller::HTTP_CREATED);
         } else {
 
             $this->response([
                 'status' => false,
-                'message' => 'GAGAL, MENAMBAHKAN CUSTOMER BARU !',
+                'message' => 'GAGAL, MENAMBAHKAN JENIS HEWAN BARU !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
