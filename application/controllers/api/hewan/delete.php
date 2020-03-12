@@ -13,31 +13,31 @@ class Delete extends REST_Controller
         parent::__construct();
         $this->load->model('Hewan_model');
     }
-    public function index_post($id)
+    public function index_post($id_hewan)
     {
 
-        if ($id === null) {
+        if ($id_hewan === null) {
             # code...
             $this->response([
                 'status' => false,
-                'message' => 'ID HEWAN TIDAK DITEMUKAN',
+                'message' => 'GAGAL, ID HEWAN TIDAK BOLEH KOSONG !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->Hewan_model->deleteHewan($id) > 0) {
+            if ($this->Hewan_model->deleteHewan($id_hewan) > 0) {
                 //ok
 
                 $this->response([
                     'status' => true,
-                    'id_hewan' => $id,
-                    'message' => 'delete hewan Sukses',
+                    'id_hewan' => $id_hewan,
+                    'message' => 'SUKSES DELETE HEWAN !',
                 ], REST_Controller::HTTP_CREATED);
                 # code...
             } else {
                 ////id not found
                 $this->response([
                     'status' => false,
-                    'message' => 'id tidak ada',
+                    'message' => 'GAGAL DELETE HEWAN ID TIDAK DITEMUKAN !',
 
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }
