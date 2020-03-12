@@ -13,7 +13,7 @@ class Create extends REST_Controller
     {
         parent::__construct();
 
-        $this->load->model('Hewan_model', 'Hewan');
+        $this->load->model('Hewan_model', 'hewan');
     }
 
     public function index_post()
@@ -28,18 +28,18 @@ class Create extends REST_Controller
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
         ];
-        if ($this->Hewan->createHewan($data) > 0) {
+        if ($this->hewan->createHewan($data) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'message' => 'SUKSES Hewan BERHASIL DI TAMBAHKAN !',
+                'message' => 'SUKSES HEWAN BERHASIL DI TAMBAHKAN !',
 
             ], REST_Controller::HTTP_CREATED);
         } else {
 
             $this->response([
                 'status' => false,
-                'message' => 'GAGAL, MENAMBAHKAN Hewan BARU !',
+                'message' => 'GAGAL, MENAMBAHKAN HEWAN BARU !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
