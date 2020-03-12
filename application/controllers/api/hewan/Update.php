@@ -12,20 +12,21 @@ class Update extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Customer_model');
+        $this->load->model('Hewan_model');
     }
 
-    public function index_post($id = null)
+    public function index_post($id_hewan = null)
     {
-        $customer = new UserData();
-        $customer->nama_customer = $this->post('nama_customer');
-        $customer->alamat_customer = $this->post('alamat_customer');
-        $customer->tanggal_lahir_customer = $this->post('tanggal_lahir_customer');
-        $customer->nomor_hp_customer = $this->post('nomor_hp_customer');
-        $customer->updated_date = date("Y-m-d H:i:s");
-        $customer->deleted_date = date("0000:00:0:00:00");
+        $hewan = new HewanData();
+        $hewan->nama_hewan = $this->post('nama_hewan');
+        $hewan->id_jenis_hewan = $this->post('id_jenis_hewan');
+        $hewan->id_ukuran_hewan = $this->post('id_ukuran_hewan');
+        $hewan->id_customer = $this->post('id_customer');
+        $hewan->tanggal_lahir_hewan = $this->post('tanggal_lahir_hewan');
+        $hewan->updated_date = date("Y-m-d H:i:s");
+        $hewan->deleted_date = date("0000:00:0:00:00");
 
-        $response = $this->Customer_model->updateCustomer($customer, $id);
+        $response = $this->Hewan_model->updateHewan($hewan, $id_hewan);
 
         return $this->returnData($response['msg'], $response['error']);
     }
@@ -37,12 +38,14 @@ class Update extends REST_Controller
         return $this->response($response);
     }
 }
-class UserData
+class HewanData
 {
-    public $nama_customer;
-    public $alamat_customer;
-    public $tanggal_lahir_customer;
-    public $nomor_hp_customer;
+    public $nama_hewan;
+    public $id_jenis_hewan;
+    public $id_ukuran_hewan;
+    public $id_customer;
+    public $tanggal_lahir_hewan;
+    public $created_date;
     public $updated_date;
     public $deleted_date;
 }
