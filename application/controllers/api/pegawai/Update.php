@@ -12,20 +12,23 @@ class Update extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Customer_model');
+        $this->load->model('Pegawai_model');
     }
 
     public function index_post($id = null)
     {
-        $customer = new UserData();
-        $customer->nama_customer = $this->post('nama_customer');
-        $customer->alamat_customer = $this->post('alamat_customer');
-        $customer->tanggal_lahir_customer = $this->post('tanggal_lahir_customer');
-        $customer->nomor_hp_customer = $this->post('nomor_hp_customer');
-        $customer->updated_date = date("Y-m-d H:i:s");
-        $customer->deleted_date = date("0000:00:0:00:00");
+        $pegawai = new UserData();
+        $pegawai->nama_pegawai = $this->post('nama_pegawai');
+        $pegawai->alamat_pegawai = $this->post('alamat_pegawai');
+        $pegawai->tanggal_lahir_pegawai = $this->post('tanggal_lahir_pegawai');
+        $pegawai->nomor_hp_pegawai = $this->post('nomor_hp_pegawai');
+        $pegawai->role_pegawai = $this->post('role_pegawai');
+        $pegawai->username = $this->post('username');
+        $pegawai->password = $this->post('password');
+        $pegawai->updated_date = date("Y-m-d H:i:s");
+        $pegawai->deleted_date = date("0000:00:0:00:00");
 
-        $response = $this->Customer_model->updateCustomer($customer, $id);
+        $response = $this->Pegawai_model->updatePegawai($pegawai, $id);
 
         return $this->returnData($response['msg'], $response['error']);
     }
@@ -39,10 +42,13 @@ class Update extends REST_Controller
 }
 class UserData
 {
-    public $nama_customer;
-    public $alamat_customer;
-    public $tanggal_lahir_customer;
-    public $nomor_hp_customer;
+    public $nama_pegawai;
+    public $alamat_pegawai;
+    public $tanggal_lahir_pegawai;
+    public $nomor_hp_pegawai;
+    public $role_pegawai;
+    public $username;
+    public $password;
     public $updated_date;
     public $deleted_date;
 }
