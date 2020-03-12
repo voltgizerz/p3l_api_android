@@ -1,24 +1,24 @@
 <?php
 
-class Ukuran_Hewan_model extends CI_Model
+class Ukuran_Hewan_model extends CI_Model 
 {
 
-    public function getUkuranHewan($id)
+    public function getUkuranHewan($id_ukuran_hewan)
     {
-        if ($id === null) {
+        if ($id_ukuran_hewan === null) {
 
             return $this->db->get('data_ukuran_hewan')->result_array();
             # code...
         } else {
 
-            $this->db->where('id_ukuran_hewan', $id);
-            return $this->db->get('data_ukuran_hewan')->result_array();
+            $this->db->where('id_ukuran_hewan', $id_ukuran_hewan);
+            return $this->db->get('data_hewan')->result_array();
         }
     }
 
-    public function deleteUkuranHewan($id)
+    public function deleteUkuranHewan($id_ukuran_hewan)
     {
-        $this->db->delete('data_ukuran_hewan', ['id_ukuran_hewan' => $id]);
+        $this->db->delete('data_ukuran_hewan', ['id_ukuran_hewan' => $id_ukuran_hewan]);
         return $this->db->affected_rows();
     }
     public function createUkuranHewan($data)
@@ -27,7 +27,7 @@ class Ukuran_Hewan_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    public function updateUkuranHewan($request, $id)
+    public function updateUkuranHewan($request, $id_ukuran_hewan)
     {
         $updateData =
             ['ukuran_hewan' => $request->ukuran_hewan,
@@ -35,21 +35,21 @@ class Ukuran_Hewan_model extends CI_Model
             'deleted_date' => $request->deleted_date,
         ];
 
-        if ($this->db->where('id_ukuran_hewan', $id)->update('data_ukuran_hewan', $updateData)) {
-            return ['msg' => 'Berhasil Update Ukuran Hewan', 'error' => false];
+        if ($this->db->where('id_ukuran_hewan', $id_ukuran_hewan)->update('data_ukuran_hewan', $updateData)) {
+            return ['msg' => 'SUSKSES UPDATE UKURAN HEWAN!', 'id_ukuran_hewan' => $id_ukuran_hewan, 'error' => false];
         }
-        return ['msg' => 'Gagal Update Ukuran Hewan', 'error' => true];
+        return ['msg' => 'GAGAL, UPDATE HEWAN ID TIDAK DITEMUKAN !', 'error' => true];
     }
 
-    public function getUkuranHewanID($id)
+    public function getUkuranHewanID($id_ukuran_hewan)
     {
-        $this->id = $id;
+        $this->id_ukuran_hewan = $id_ukuran_hewan;
         $query = "SELECT * FROM data_ukuran_hewan WHERE id_ukuran_hewan = ?";
-        $result = $this->db->query($query, $this->id);
+        $result = $this->db->query($query, $this->id_ukuran_hewan);
         if ($result->num_rows() != 0) {
             return ['msg' => $result->result(), 'error' => false];
         } else {
-            return ['msg' => 'Data Ukuran Hewan Tidak Ditemukan', 'error' => true];
+            return ['msg' => 'GAGAL, CARI UKURAN HEWAN ID TIDAK DITEMUKAN !', 'error' => true];
         }
     }
 }
