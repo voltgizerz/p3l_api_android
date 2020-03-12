@@ -33,7 +33,7 @@ class Hewan_model extends CI_Model
             ['nama_hewan' => $request->nama_hewan,
             'id_jenis_hewan' => $request->id_jenis_hewan,
             'id_ukuran_hewan' => $request->id_ukuran_hewan,
-            'id_customer' => $request->id_customer,
+            'id_hewan' => $request->id_hewan,
             'tanggal_lahir_hewan' => $request->tanggal_lahir_hewan,
             'updated_date' => $request->updated_date,
             'deleted_date' => $request->deleted_date,
