@@ -14,10 +14,10 @@ class Search extends REST_Controller
         parent::__construct();
         $this->load->model('Hewan_model', 'hewan');
     }
-    public function index_get($id)
+    public function index_get($id_hewan)
     {
 
-        $response = $this->hewan->getHewanID($id);
+        $response = $this->hewan->getHewanID($id_hewan);
         return $this->returnData($response['msg'], $response['error']);
     }
 
