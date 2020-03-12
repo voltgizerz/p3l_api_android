@@ -19,7 +19,7 @@ class Create extends REST_Controller
     public function index_post()
     {
         $data = [
-            'ukuran_hewan' => $this->post('id_customer'),
+            'ukuran_hewan' => $this->post('ukuran_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
