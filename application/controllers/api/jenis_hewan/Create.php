@@ -19,13 +19,12 @@ class Create extends REST_Controller
     public function index_post()
     {
         $data = [
-            'id_jenis_hewan' => $this->post('id_jenis_hewan'),
             'nama_jenis_hewan' => $this->post('nama_jenis_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
         ];
-        if ($this->jenis_hewan->createJenis_Hewan($data) > 0) {
+        if ($this->jenis_hewan->createJenisHewan($data) > 0) {
             # code...
             $this->response([
                 'status' => true,
