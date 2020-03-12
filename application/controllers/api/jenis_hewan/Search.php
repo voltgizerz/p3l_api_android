@@ -12,12 +12,12 @@ class Search extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Customer_model', 'customer');
+        $this->load->model('Jenis_Hewan_model', 'jenis_hewan');
     }
     public function index_get($id)
     {
 
-        $response = $this->customer->getCustomerID($id);
+        $response = $this->jenis_hewan->getJenisHewanID($id);
         return $this->returnData($response['msg'], $response['error']);
     }
 
