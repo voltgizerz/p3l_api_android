@@ -15,7 +15,7 @@ class Update extends REST_Controller
         $this->load->model('Ukuran_Hewan_model');
     }
 
-    public function index_post($id_hewan = null)
+    public function index_post($id_ukuran_hewan = null)
     {
         $ukuran_hewan = new UkuranHewanData();
         $ukuran_hewan->ukuran_hewan = $this->post('ukuran_hewan');
