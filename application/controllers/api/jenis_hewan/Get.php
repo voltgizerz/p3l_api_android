@@ -22,7 +22,8 @@ class Get extends REST_Controller
         if ($id === null) {
 
             $jenis_hewan = $this->jenis_hewan->getJenisHewan($id);
-            # code...
+             $this->load->view('jenis_hewan',$jenis_hewan);
+
 
         } else {
 
