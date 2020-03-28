@@ -13,27 +13,28 @@ class Get extends REST_Controller
     {
         parent::__construct();
 
-        $this->load->model('Hewan_model', 'hewan');
+        $this->load->model('Jenis_Hewan_model', 'jenis_hewan');
     }
 
     public function index_get()
     {
-        $id_hewan = $this->get('id_hewan');
-        if ($id_hewan === null) {
+        $id = $this->get('id_jenis_hewan');
+        if ($id === null) {
 
-            $hewan = $this->hewan->gethewan($id_hewan);
-            # code...
+            $jenis_hewan = $this->jenis_hewan->getJenisHewan($id);
+             $this->load->view('jenis_hewan',$jenis_hewan);
+
 
         } else {
 
-            $hewan = $this->hewan->gethewan($id_hewan);
+            $jenis_hewan = $this->jenis_hewan->getJenisHewan($id);
         }
 
-        if ($hewan) {
+        if ($jenis_hewan) {
 
             $this->response([
                 'status' => true,
-                'data' => $hewan,
+                'data' => $jenis_hewan,
 
             ], REST_Controller::HTTP_OK);
             # code...
@@ -41,7 +42,7 @@ class Get extends REST_Controller
 
             $this->response([
                 'status' => false,
-                'message' => 'GAGAL, ID HEWAN TIDAK DITEMUKAN / SALAH FORMAT !',
+                'message' => 'GAGAL, ID JENIS HEWAN TIDAK DITEMUKAN / SALAH FORMAT !',
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -49,31 +50,31 @@ class Get extends REST_Controller
     public function index_delete()
     {
 
-        $id_hewan = $this->delete('id_hewan');
-        var_dump($id_hewan);
-        if ($id_hewan === null) {
+        $id = $this->delete('id_jenis_hewan');
+        var_dump($id);
+        if ($id === null) {
             # code...
             $this->response([
                 'status' => false,
 
-                'message' => 'GAGAL, ID HEWAN TIDAK BOLEH KOSONG!',
+                'message' => 'GAGAL, ID JENIS HEWAN TIDAK BOLEH KOSONG!',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->hewan->deleteHewan($id_hewan) > 0) {
+            if ($this->jenis_hewan->deleteJenisHewan($id) > 0) {
                 //ok
 
                 $this->response([
                     'status' => true,
-                    'id_hewan' => $id_hewan,
-                    'message' => 'SUKSES DELETE HEWAN !',
+                    'id_jenis_hewan' => $id,
+                    'message' => 'SUKSES DELETE JENIS HEWAN !',
                 ], REST_Controller::HTTP_OK);
                 # code...
             } else {
                 ////id not found
                 $this->response([
                     'status' => false,
-                    'message' => 'GAGAL, ID HEWAN TIDAK DITEMUKAN !',
+                    'message' => 'GAGAL, ID JENIS HEWAN TIDAK DITEMUKAN !',
 
                 ], REST_Controller::HTTP_NOT_FOUND);
             }
@@ -84,27 +85,24 @@ class Get extends REST_Controller
     {
 
         $data = [
-            'nama_hewan' => $this->post('nama_hewan'),
             'id_jenis_hewan' => $this->post('id_jenis_hewan'),
-            'id_ukuran_hewan' => $this->post('id_ukuran_hewan'),
-            'id_customer' => $this->post('id_customer'),
-            'tanggal_lahir_hewan' => $this->post('tanggal_lahir_hewan'),
+            'nama_jenis_hewan' => $this->post('nama_jenis_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
         ];
-        if ($this->hewan->createHewan($data) > 0) {
+        if ($this->jenis_hewan->createJenisHewan($data) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'message' => 'SUKSES HEWAN BERHASIL DI TAMBAHKAN !',
+                'message' => 'SUKSES JENIS HEWAN BERHASIL DI TAMBAHKAN !',
 
             ], REST_Controller::HTTP_CREATED);
         } else {
 
             $this->response([
                 'status' => false,
-                'message' => 'GAGAL, MENAMBAHKAN HEWAN BARU !',
+                'message' => 'GAGAL, MENAMBAHKAN JENIS HEWAN BARU !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
@@ -112,30 +110,28 @@ class Get extends REST_Controller
 
     public function index_put()
     {
-        $id_hewan = $this->put('id_hewan');
+        $id = $this->put('id_jenis_hewan');
         $data = [
-            'nama_hewan' => $this->post('nama_hewan'),
             'id_jenis_hewan' => $this->post('id_jenis_hewan'),
-            'id_ukuran_hewan' => $this->post('id_ukuran_hewan'),
-            'id_customer' => $this->post('id_customer'),
-            'tanggal_lahir_hewan' => $this->post('tanggal_lahir_hewan'),
+            'nama_jenis_hewan' => $this->post('nama_jenis_hewan'),
             'created_date' => date("Y-m-d H:i:s"),
             'updated_date' => date("0000:00:0:00:00"),
             'deleted_date' => date("0000:00:0:00:00"),
+
         ];
 
-        if ($this->hewan->updateHewan($data, $id_hewan) > 0) {
+        if ($this->jenis_hewan->updateJenisHewan($data, $id) > 0) {
             # code...
             $this->response([
                 'status' => true,
-                'id_hewan' => $id_hewan,
-                'message' => 'SUKSES UPDATED HEWAN !',
+                'id_jenis_hewan' => $id,
+                'message' => 'SUKSES UPDATED JENIS HEWAN !',
 
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'GAGAL UPDATED HEWAN ID TIDAK DI TEMUKAN! !',
+                'message' => 'GAGAL UPDATED JENIS HEWAN ID TIDAK DI TEMUKAN! !',
 
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
