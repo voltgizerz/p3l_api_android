@@ -22,7 +22,7 @@ class Get extends REST_Controller
         if ($id === null) {
 
             $customer = $this->customer->getCustomer($id);
-            # code...
+            $this->load->view('customer',$customer);
 
         } else {
 
